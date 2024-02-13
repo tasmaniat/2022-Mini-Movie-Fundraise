@@ -26,6 +26,18 @@ def not_blank(question):
             return response
 
 
+# checks users enter an integer to a given question
+def num_check(question):
+    while True:
+
+        try:
+            response = int(input(question))
+            return response
+
+        except ValueError:
+            print("Please enter an integer.")
+
+
 # main routine starts here
 
 
@@ -48,8 +60,18 @@ while tickets_sold < MAX_TICKETS:
     if name == 'xxx':
         break
 
-    tickets_sold += 1
+    age = num_check("Age: ")
 
+    if 12 <= age <= 120:
+        pass
+    elif age < 12:
+        print("Sorry you are too young for this movie")
+        continue
+    else:
+        print("?? That looks like a typo, please try again.")
+        continue
+
+    tickets_sold += 1
 
 # Output number of tickets sold
 if tickets_sold == MAX_TICKETS:
@@ -57,4 +79,3 @@ if tickets_sold == MAX_TICKETS:
 else:
     print("You have sold {} ticket/s. There is {} ticket/s"
           "remaining".format(tickets_sold, MAX_TICKETS - tickets_sold))
-
