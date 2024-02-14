@@ -1,20 +1,5 @@
 # Functions go here
 
-# checks user had entered yes / no to a question
-def yes_no(question):
-    while True:
-        response = input(question).lower()
-
-        if response == "yes" or response == "y":
-            return "yes"
-
-        elif response == "no" or response == "n":
-            return "no"
-
-        else:
-            print("please answer yes / no")
-
-
 # checks that user response is not blank
 def not_blank(question):
     while True:
@@ -55,13 +40,49 @@ def calc_ticket_price(var_age):
     return price
 
 
+# checks users enter a valid choice based on a list
+# it accepts either the first letter of the full word
+# and has a custom error message. (returns the full word)
+def choice_checker(question, num_letters, valid_list):
+    error = "Please choose {} or {}".format(valid_list[0],
+                                            valid_list[1])
+
+    if num_letters == 1:
+        short_version = 1
+    else:
+        short_version = 2
+
+    while True:
+
+        # ask user for choice (and put choice in lowercase)
+        response = input(question).lower()
+
+        # iterates through list and if response == item
+        # in the list (or the first letter of an item), the
+        # full item name is returned
+
+        for item in valid_list:
+            if response == item[:short_version] or response == item:
+                return item
+
+        # output error if the item not in list
+        print(error)
+        print()
+
+
 # main routine starts here
 
 # set maximum number of tickets below
 MAX_TICKETS = 3
 
-# ask user if they want to see the instructions
-want_instructions = yes_no("Do you want to read the instructions? ")
+# List for checking responses
+yes_no_list = ["yes", "no"]
+payment_list = ["cash", "credit"]
+
+# Ask the user if they want to read the instructions  and check it's valid
+want_instructions = choice_checker("Do you want to read the"
+                                   " instructions (y/n): ",
+                                   1, yes_no_list)
 
 if want_instructions == "yes":
     print("Instructions go here")
@@ -89,7 +110,9 @@ while tickets_sold < MAX_TICKETS:
 
     # calculate ticket cost
     ticket_cost = calc_ticket_price(age)
-    print("Age: {}, Ticket Price: ${:.2f}".format(age, ticket_cost))
+    pay_method = choice_checker("Choose a payment method"
+                                " (cash / credit): ",
+                                2, payment_list)
 
     tickets_sold += 1
 
