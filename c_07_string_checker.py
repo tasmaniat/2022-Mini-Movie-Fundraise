@@ -6,11 +6,6 @@ def choice_checker(question, num_letters, valid_list):
     error = "Please choose {} or {}".format(valid_list[0],
                                             valid_list[1])
 
-    if num_letters == 1:
-        short_version = 1
-    else:
-        short_version = 2
-
     while True:
 
         # ask user for choice (and put choice in lowercase)
@@ -21,7 +16,7 @@ def choice_checker(question, num_letters, valid_list):
         # full item name is returned
 
         for item in valid_list:
-            if response == item[:short_version] or response == item:
+            if response == item[:num_letters] or response == item:
                 return item
 
         # output error if the item not in list
