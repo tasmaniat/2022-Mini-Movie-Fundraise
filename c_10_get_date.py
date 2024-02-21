@@ -9,9 +9,9 @@ month = today.strftime("%m")
 year = today.strftime("%Y")
 
 heading = "The current date is {}/{}/{}".format(day, month, year)
-filename = "MMF_{}_{}_{}".format(Year, month, day)
+filename = "MMF_{}_{}_{}".format(year, month, day)
 
-Heading
+heading
 print(heading)
 print("The filename will be {}. txt".format(filename))
 
