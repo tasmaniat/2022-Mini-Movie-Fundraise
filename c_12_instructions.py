@@ -32,7 +32,7 @@ def show_instructions():
     This information will also be automatically written to
     a text file.
 
-    *****************************''')
+    ****************************''')
 
 
 # Main Routine goes here...
